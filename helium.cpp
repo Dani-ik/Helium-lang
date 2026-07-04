@@ -57,6 +57,11 @@ int mul(string a, string b)
 
 int div(string a, string b)
 {
+    if (value(b) == 0)
+    {
+        cout << "Error: division by zero" << endl;
+        exit(0);
+    }
     return value(a) / value(b);
 }
 
@@ -88,6 +93,7 @@ int main()
         */
         if (t[0] == "let")
         {
+            back_up.erase(t[1]);
             if (t[3] == "add")
             {
                 vars[t[1]] = add(t[4], t[5]);
@@ -116,8 +122,15 @@ int main()
         }
         if (t[0] == "rec")
         {
-            vars[t[1]] = back_up[t[1]];
-            back_up.erase(t[1]);
+            if (back_up.count(t[1]))
+            {
+                vars[t[1]] = back_up[t[1]];
+                back_up.erase(t[1]);
+            }
+            else
+            {
+                cout << "Error: nothing to recover for variable '" << t[1] << "'." << endl;
+            }
         }
         if (t[0] == "print")
         {

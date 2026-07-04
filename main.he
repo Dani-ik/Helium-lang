@@ -1,5 +1,26 @@
 let a = 10
-let b = 5
-print div a b
-let c = mul a b
-print div c 10
+let b = add a -5
+print add a b
+
+let c = 10
+let d = 5
+print sub d c
+
+let e = 50
+let f = 5
+print mul f e
+print div e f
+
+let g = 6
+del g
+rec g
+print g
+
+let h = 8
+del h
+let h = 5
+rec h
+print h
+
+let i = 2
+print div i 0
