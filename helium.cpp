@@ -6,6 +6,10 @@
 #include <fstream>
 #include <cctype>
 
+/*
+g++ -std=c++17 helium.cpp -o Helium
+*/
+
 using namespace std;
 
 unordered_map<string, int> vars, back_up;
@@ -24,43 +28,26 @@ vector<string> split(const string &s)
     return v;
 }
 
+int value(string s)
+{
+    if (isdigit(s[0]) || s[0] == '-')
+    {
+        return stoi(s);
+    }
+    else
+    {
+        return vars[s];
+    }
+}
+
 int add(string a, string b)
 {
-    int x, y;
-    bool isintx = 1, isinty = 1;
-    for (char c : a)
-    {
-        if (!isdigit(c))
-        {
-            isintx = 0;
-            break;
-        }
-    }
-    for (char c : b)
-    {
-        if (!isdigit(c))
-        {
-            isinty = 0;
-            break;
-        }
-    }
-    if (isintx)
-    {
-        x = stoi(a);
-    }
-    else
-    {
-        x = vars[a];
-    }
-    if (isinty)
-    {
-        y = stoi(b);
-    }
-    else
-    {
-        y = vars[b];
-    }
-    return x + y;
+    return value(a) + value(b);
+}
+
+int sub(string a, string b)
+{
+    return value(a) - value(b);
 }
 
 int main()
@@ -95,9 +82,13 @@ int main()
             {
                 vars[t[1]] = add(t[4], t[5]);
             }
+            else if (t[3] == "sub")
+            {
+                vars[t[1]] = sub(t[4], t[5]);
+            }
             else
             {
-                vars[t[1]] = stoi(t[3]);
+                vars[t[1]] = value(t[3]);
             }
         }
         if (t[0] == "del")
@@ -115,6 +106,10 @@ int main()
             if (t[1] == "add")
             {
                 cout << add(t[2], t[3]) << endl;
+            }
+            else if (t[1] == "sub")
+            {
+                cout << sub(t[2], t[3]) << endl;
             }
             else
             {
