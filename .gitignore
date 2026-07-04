@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Debug symbols (macOS)
+*.dSYM/
+
+# Executable files
+Helium
