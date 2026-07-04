@@ -50,6 +50,16 @@ int sub(string a, string b)
     return value(a) - value(b);
 }
 
+int mul(string a, string b)
+{
+    return value(a) * value(b);
+}
+
+int div(string a, string b)
+{
+    return value(a) / value(b);
+}
+
 int main()
 {
     ifstream file("main.he");
@@ -86,6 +96,14 @@ int main()
             {
                 vars[t[1]] = sub(t[4], t[5]);
             }
+            else if (t[3] == "mul")
+            {
+                vars[t[1]] = mul(t[4], t[5]);
+            }
+            else if (t[3] == "div")
+            {
+                vars[t[3]] = div(t[4], t[5]);
+            }
             else
             {
                 vars[t[1]] = value(t[3]);
@@ -110,6 +128,14 @@ int main()
             else if (t[1] == "sub")
             {
                 cout << sub(t[2], t[3]) << endl;
+            }
+            else if (t[1] == "mul")
+            {
+                cout << mul(t[2], t[3]) << endl;
+            }
+            else if (t[1] == "div")
+            {
+                cout << div(t[2], t[3]) << endl;
             }
             else
             {
